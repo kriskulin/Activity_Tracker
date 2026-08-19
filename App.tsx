@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: '#ddd',
     backgroundColor: '#fafafa',
+    paddingBottom: 24,
   },
   tabItem: { flex: 1, paddingVertical: 14, alignItems: 'center' },
   tabLabel: { fontSize: 14, fontWeight: '600', color: '#888' },

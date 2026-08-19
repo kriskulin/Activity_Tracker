@@ -54,28 +54,28 @@ export default function AddActivityInline({ onAdd }: Props) {
     );
   }
 
-  return (
+    return (
     <View style={styles.panel}>
+      <TextInput
+        style={styles.input}
+        value={text}
+        onChangeText={(v) => {
+          setText(v);
+          if (error) setError(null);
+        }}
+        placeholder="New activity name"
+        autoFocus
+        editable={!saving}
+      />
+      {error && <Text style={styles.errorText}>{error}</Text>}
       <View style={styles.row}>
-        <TextInput
-          style={styles.input}
-          value={text}
-          onChangeText={(v) => {
-            setText(v);
-            if (error) setError(null);
-          }}
-          placeholder="New activity name"
-          autoFocus
-          editable={!saving}
-        />
-        <Pressable style={[styles.smallButton, styles.addButton]} onPress={handleAdd} disabled={saving}>
-          {saving ? <ActivityIndicator color="#fff" /> : <Text style={styles.smallButtonText}>Add</Text>}
+        <Pressable style={[styles.button, styles.addButton]} onPress={handleAdd} disabled={saving}>
+          {saving ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Add</Text>}
         </Pressable>
-        <Pressable style={[styles.smallButton, styles.cancelButton]} onPress={close} disabled={saving}>
-          <Text style={[styles.smallButtonText, styles.cancelText]}>Cancel</Text>
+        <Pressable style={[styles.button, styles.cancelButton]} onPress={close} disabled={saving}>
+          <Text style={[styles.buttonText, styles.cancelText]}>Cancel</Text>
         </Pressable>
       </View>
-      {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );
 }
@@ -90,22 +90,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   plusText: { color: '#fff', fontSize: 24, lineHeight: 26 },
-  panel: { marginTop: 10 },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  panel: { marginTop: 10, backgroundColor: '#f9f9f9', borderRadius: 8, padding: 12 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
   input: {
-    flex: 1,
     borderWidth: 1,
     borderColor: '#c9c9c9',
     borderRadius: 8,
-    paddingHorizontal: 12,
-    height: 44,
-    fontSize: 16,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    height: 56,
+    fontSize: 18,
     backgroundColor: '#fff',
   },
-  smallButton: { paddingHorizontal: 14, height: 44, borderRadius: 8, alignItems: 'center', justifyContent: 'center' },
+  button: { flex: 1, paddingHorizontal: 14, height: 46, borderRadius: 8, alignItems: 'center', justifyContent: 'center' },
   addButton: { backgroundColor: '#2f6fed' },
   cancelButton: { backgroundColor: '#eee' },
-  smallButtonText: { color: '#fff', fontWeight: '600' },
+  buttonText: { color: '#fff', fontWeight: '600', fontSize: 15 },
   cancelText: { color: '#444' },
-  errorText: { color: '#d33', marginTop: 6, fontSize: 13 },
+  errorText: { color: '#d33', marginTop: 8, fontSize: 13 },
 });
